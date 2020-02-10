@@ -1,0 +1,10 @@
+route:
+  group_wait: 20s
+  group_interval: 20s
+  repeat_interval: 60s
+  receiver: telegram-alert-bot
+receivers:
+- name: telegram-alert-bot
+  webhook_configs:
+  - send_resolved: true
+    url: 'http://telegram-alert-bot:8075'
