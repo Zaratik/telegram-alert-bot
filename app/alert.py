@@ -12,7 +12,7 @@ class PrometheusAlert:
             alert_time = str(datetime.strptime(alert['startsAt'][:-4], "%Y-%m-%dT%H:%M:%S.%f"))[0:19]
             alert_high = alert['labels']['severity'].upper()
             alert_inst = alert['labels']['instance']
-            alert_desc = alert['annotations']['title']
+            alert_desc = '\n'.join(['{0}: {1}'.format(k, v) for k, v in alert['annotations'].items()])
             msg = "[{}] {} at {} on {} {}".format(alert_high, alert_name, alert_time, alert_inst, alert_desc)
             alerts.append(msg)
         return '\n'.join(alerts)
